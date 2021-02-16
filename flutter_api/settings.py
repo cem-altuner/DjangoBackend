@@ -121,7 +121,7 @@ USE_TZ = True
 
 # -------------- MY CHANGES --------------
 
-STATIC_ROOT = ''
+STATIC_ROOT = '/home/ubuntu/DjangoBackend/static/'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 AUTH_USER_MODEL = 'core.Customer'
