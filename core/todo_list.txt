@@ -1,0 +1,80 @@
+#######  TODO   ######
+# set the time zone correctly.
+# you should be serving static files
+
+# email templates
+# views:
+#    1 - password reset
+#    2 - verify email
+
+####### installed 3-rd party apps######
+pip install django
+pip install djangorestframework
+pip install markdown       # Markdown support for the browsable API.
+pip install django-filter  # Filtering support
+pip install django-rest-email-auth
+
+############ CEM: ############
+
+1- kanka TOKEN ALMA, TOKENI KULLANMA kısmını oku.
+2- ONUNE_GELEN_GIRSIN_MI = True -> views.py'da
+3- Djangoda herhangi yanlış bi link gir mesel localhost:8000/ananinami/ gibi, var olan tüm linkleri gösteriyor.
+
+# YENİLER:
+4- api/auth/register/ 'da 500 Internal Server Error hatası için email zaten kullanımda demek
+
+
+
+######### TOKEN ALMA, TOKENI KULLANMA ############
+
+curl --header "Content-Type: application/json" \
+--request POST \
+--data '{"username":"oguzhan","password":"elijah60"}' \
+http://localhost:8000/api/auth/token/
+
+
+çıktısı bu oldu.  {"token":"e1fc224c86260d784be0196ab5cd825bfb09d32a"}
+
+
+bu tokenle girmeye çalışıyorum.
+
+curl -H 'Authorization: Token e1fc224c86260d784be0196ab5cd825bfb09d32a' -H "Content-Type: application/json" --request GET http://localhost:8000/api/companies/
+
+
+çıktısı bu oldu: [{"id":1,"name":"Lidl","country":"Slovakya","city":"Bratislava"}]
+
+
+
+curl -H 'Authorization: Token e1fc224c86260d784be0196ab5cd825bfb09d32a' -H "Content-Type: application/json" --request POST --data '{"name":"Tesco", "city":"almus", "country":"tokat" }' http://localhost:8000/api/companies/
+
+çıktısı yeni yaratabildiğini gösteriyo: {"id":2,"name":"Tesco","country":"tokat","city":"almus"}
+
+#################################################
+
+
+
+
+
+#notes to myself
+
+https://simpleisbetterthancomplex.com/tutorial/2018/11/22/how-to-implement-token-authentication-using-django-rest-framework.html
+
+
+
+		import requests
+
+		url = 'http://127.0.0.1:8000/hello/'
+		headers = {'Authorization': 'Token 9054f7aa9305e012b3c2300408c3dfdf390fcddf'}
+		r = requests.get(url, headers=headers)
+
+
+curl -H 'Authorization: Token 9054f7aa9305e012b3c2300408c3dfdf390fcddf'
+
+
+teslim için çalışma sırası:
+token olayını yaz, dökümente et +++++++++++++++++
+her model için serializer ve viewset yaz
+test et
+ceme updatelerin çalışmayacağını söyle
+
+
