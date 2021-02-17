@@ -29,15 +29,12 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class CatalogSerializer(serializers.ModelSerializer):
-    logo = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Catalog
-        fields = ['id', 'name', 'company', 'pdf_file']
+        fields = ['id', 'name', 'company', 'pdf_file','logo']
         
-    def get_logo(self, obj):
-        request = self.context.get('request')
-        photo_url = obj.logo.url
-        return request.build_absolute_uri(photo_url).replace('/api','').replace('/companies','')
+
 
 
 class ShoppingListItemSerializer(serializers.ModelSerializer):
