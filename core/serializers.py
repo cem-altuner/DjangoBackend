@@ -36,9 +36,12 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class CatalogSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = Catalog
-        fields = ['id', 'name', 'company', 'pdf_file']
+        fields = ['id', 'name', 'company', 'pdf_file','logo']
+        
+
 
 
 class ShoppingListItemSerializer(serializers.ModelSerializer):
