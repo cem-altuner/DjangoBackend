@@ -16,9 +16,16 @@ class MyRegistrationSerializer(RegistrationSerializer):
 
 
 class CompanySerializer(serializers.ModelSerializer):
+    logo = serializers.SerializerMethodField(read_only=True)
     class Meta:
         model = Company
-        fields = ['id', 'name', 'country', 'city', 'logo']
+        fields = ['id', 'name', 'country', 'city']
+
+    def get_logo(self, obj):
+        request = self.context.get('request')
+        photo_url = obj.logo.url
+        return request.build_absolute_uri(photo_url).replace('/api','').replace('/companies','')
+
 
 
 # Serializers define the API representation.
