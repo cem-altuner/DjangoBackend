@@ -17,9 +17,10 @@ class MyRegistrationSerializer(RegistrationSerializer):
 
 class CompanySerializer(serializers.ModelSerializer):
     logo = serializers.SerializerMethodField(read_only=True)
+
     class Meta:
         model = Company
-        fields = ['id', 'name', 'country', 'city']
+        fields = ['id', 'name', 'country', 'city','logo']
 
     def get_logo(self, obj):
         request = self.context.get('request')
@@ -36,12 +37,9 @@ class UserSerializer(serializers.ModelSerializer):
 
 
 class CatalogSerializer(serializers.ModelSerializer):
-
     class Meta:
         model = Catalog
-        fields = ['id', 'name', 'company', 'pdf_file','logo']
-        
-
+        fields = ['id', 'name', 'company', 'pdf_file']
 
 
 class ShoppingListItemSerializer(serializers.ModelSerializer):
