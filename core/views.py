@@ -23,6 +23,7 @@ from django.core.mail import EmailMessage
 from django.contrib.auth.views import PasswordResetView
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication
 from rest_framework import status
+from django.views.decorators.csrf import csrf_exempt
 ONUNE_GELEN_GIRSIN_MI = True
 
 
@@ -108,7 +109,7 @@ class PasswordResetApi(APIView):
         print('PASS API:: prv ', prv)
         pass
 
-
+@csrf_exempt
 def signup(request):
     if request.method == 'POST':
         print("request.post")
